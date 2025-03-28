@@ -1,5 +1,30 @@
 import { Product, Category } from '@/types'
 
+export interface Category {
+  id: string
+  name: string
+  slug: string
+}
+
+export interface Product {
+  id: string
+  name: string
+  description: string
+  price: number
+  category: string
+  image: string
+  rating: number
+  reviews?: number
+  inStock: boolean
+  featured?: boolean
+  discount?: number
+  originalPrice?: number
+  tags?: string[]
+  specifications?: {
+    [key: string]: string
+  }
+}
+
 export const categories: Category[] = [
   {
     id: '1',
@@ -29,11 +54,20 @@ export const products: Product[] = [
     name: 'Organic Avocados',
     description: 'Fresh, organic avocados perfect for guacamole, salads, or avocado toast. Sourced from sustainable farms.',
     price: 7.99,
+    originalPrice: 9.99,
+    discount: 20,
     category: 'fresh',
     image: 'https://images.unsplash.com/photo-1523049673857-eb18f1d7b578?q=80&w=600',
     rating: 4.8,
+    reviews: 128,
     inStock: true,
-    featured: true
+    featured: true,
+    tags: ['organic', 'fresh', 'fruit'],
+    specifications: {
+      'Origin': 'Mexico',
+      'Organic': 'Yes',
+      'Package Size': '4 pieces'
+    }
   },
   {
     id: '2',
@@ -43,8 +77,15 @@ export const products: Product[] = [
     category: 'pantry',
     image: 'https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?q=80&w=600',
     rating: 4.9,
+    reviews: 56,
     inStock: true,
-    featured: true
+    featured: true,
+    tags: ['olive oil', 'cooking', 'dressing'],
+    specifications: {
+      'Origin': 'Italy',
+      'Acidity Level': '0.3%',
+      'Package Size': '1L'
+    }
   },
   {
     id: '3',
@@ -54,7 +95,14 @@ export const products: Product[] = [
     category: 'pantry',
     image: 'https://images.unsplash.com/photo-1551462147-ff29053bfc14?q=80&w=600',
     rating: 4.7,
-    inStock: true
+    reviews: 34,
+    inStock: true,
+    tags: ['pasta', 'artisanal', 'italian'],
+    specifications: {
+      'Origin': 'Italy',
+      'Ingredients': 'Durum wheat semolina, water',
+      'Package Size': '500g'
+    }
   },
   {
     id: '4',
@@ -64,7 +112,14 @@ export const products: Product[] = [
     category: 'pantry',
     image: 'https://images.unsplash.com/photo-1631452180328-b949bbc8657d?q=80&w=600',
     rating: 4.9,
-    inStock: true
+    reviews: 23,
+    inStock: true,
+    tags: ['balsamic vinegar', 'aged', 'italian'],
+    specifications: {
+      'Origin': 'Italy',
+      'Aging Time': '12 years',
+      'Package Size': '250ml'
+    }
   },
   {
     id: '5',
@@ -74,7 +129,14 @@ export const products: Product[] = [
     category: 'fresh',
     image: 'https://images.unsplash.com/photo-1563746924237-f81951d2580f?q=80&w=600',
     rating: 4.6,
-    inStock: true
+    reviews: 45,
+    inStock: true,
+    tags: ['organic', 'berries', 'fresh'],
+    specifications: {
+      'Origin': 'USA',
+      'Organic': 'Yes',
+      'Package Size': '1 pint'
+    }
   },
   {
     id: '6',
@@ -84,8 +146,15 @@ export const products: Product[] = [
     category: 'specialty',
     image: 'https://images.unsplash.com/photo-1452195100486-9cc805987862?q=80&w=600',
     rating: 4.8,
+    reviews: 67,
     inStock: true,
-    featured: true
+    featured: true,
+    tags: ['gourmet', 'cheese', 'selection'],
+    specifications: {
+      'Origin': 'France',
+      'Cheese Types': 'Brie, Gouda, Blue Cheese',
+      'Package Size': '1kg'
+    }
   },
   {
     id: '7',
@@ -95,7 +164,14 @@ export const products: Product[] = [
     category: 'specialty',
     image: 'https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=600',
     rating: 4.7,
-    inStock: true
+    reviews: 21,
+    inStock: true,
+    tags: ['truffle', 'honey', 'infused'],
+    specifications: {
+      'Origin': 'Italy',
+      'Truffle Type': 'Black Truffle',
+      'Package Size': '250g'
+    }
   },
   {
     id: '8',
@@ -105,7 +181,14 @@ export const products: Product[] = [
     category: 'snacks',
     image: 'https://images.unsplash.com/photo-1548907040-4baa42d10919?q=80&w=600',
     rating: 4.9,
-    inStock: true
+    reviews: 89,
+    inStock: true,
+    tags: ['dark chocolate', 'premium', 'snacks'],
+    specifications: {
+      'Origin': 'Belgium',
+      'Cocoa Content': '72%',
+      'Package Size': '100g'
+    }
   },
   {
     id: '9',
@@ -115,7 +198,14 @@ export const products: Product[] = [
     category: 'pantry',
     image: 'https://images.unsplash.com/photo-1599383558648-6b1c70a3ff5a?q=80&w=600',
     rating: 4.7,
-    inStock: true
+    reviews: 56,
+    inStock: true,
+    tags: ['organic', 'raw honey', 'wildflower'],
+    specifications: {
+      'Origin': 'USA',
+      'Organic': 'Yes',
+      'Package Size': '500g'
+    }
   },
   {
     id: '10',
@@ -125,7 +215,14 @@ export const products: Product[] = [
     category: 'fresh',
     image: 'https://images.unsplash.com/photo-1608198093002-ad4e005484ec?q=80&w=600',
     rating: 4.6,
-    inStock: true
+    reviews: 34,
+    inStock: true,
+    tags: ['artisanal', 'sourdough', 'bread'],
+    specifications: {
+      'Origin': 'USA',
+      'Ingredients': 'Flour, water, salt, starter',
+      'Package Size': '1 loaf'
+    }
   },
   {
     id: '11',
@@ -135,7 +232,14 @@ export const products: Product[] = [
     category: 'specialty',
     image: 'https://images.unsplash.com/photo-1622340044729-024e25e6732d?q=80&w=600',
     rating: 4.9,
-    inStock: true
+    reviews: 12,
+    inStock: true,
+    tags: ['saffron', 'threads', 'premium'],
+    specifications: {
+      'Origin': 'Spain',
+      'Quality': 'High',
+      'Package Size': '1g'
+    }
   },
   {
     id: '12',
@@ -145,7 +249,14 @@ export const products: Product[] = [
     category: 'snacks',
     image: 'https://images.unsplash.com/photo-1606923829579-0cb981a83e2b?q=80&w=600',
     rating: 4.7,
-    inStock: true
+    reviews: 45,
+    inStock: true,
+    tags: ['organic', 'mixed nuts', 'snacks'],
+    specifications: {
+      'Origin': 'USA',
+      'Organic': 'Yes',
+      'Package Size': '1lb'
+    }
   }
 ]
 
@@ -159,4 +270,4 @@ export function getFeaturedProducts(): Product[] {
 
 export function getProductById(id: string): Product | undefined {
   return products.find(product => product.id === id)
-} 
+}

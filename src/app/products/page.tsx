@@ -9,6 +9,7 @@ export default function ProductsPage() {
   const searchParams = useSearchParams()
   const categoryParam = searchParams.get('category')
   const [filter, setFilter] = useState<string | null>(categoryParam)
+  const [sortBy, setSortBy] = useState<string>('default')
   const [filteredProducts, setFilteredProducts] = useState(products)
   
   useEffect(() => {
@@ -16,12 +17,26 @@ export default function ProductsPage() {
   }, [categoryParam])
   
   useEffect(() => {
-    if (filter) {
-      setFilteredProducts(getProductsByCategory(filter))
-    } else {
-      setFilteredProducts(products)
+    let result = filter ? getProductsByCategory(filter) : products
+    
+    // Apply sorting
+    switch (sortBy) {
+      case 'price-low':
+        result = [...result].sort((a, b) => a.price - b.price)
+        break
+      case 'price-high':
+        result = [...result].sort((a, b) => b.price - a.price)
+        break
+      case 'name':
+        result = [...result].sort((a, b) => a.name.localeCompare(b.name))
+        break
+      default:
+        // Keep default order
+        break
     }
-  }, [filter])
+    
+    setFilteredProducts(result)
+  }, [filter, sortBy])
   
   const handleCategoryChange = (category: string | null) => {
     setFilter(category)
@@ -31,8 +46,8 @@ export default function ProductsPage() {
     <div>
       <h1 className="text-3xl font-bold mb-8">Our Products</h1>
       
-      {/* Filters */}
-      <div className="mb-8">
+      {/* Filters and Sort */}
+      <div className="mb-8 space-y-4">
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => handleCategoryChange(null)}
@@ -54,6 +69,21 @@ export default function ProductsPage() {
               {category.name}
             </button>
           ))}
+        </div>
+
+        {/* Sort Options */}
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-medium text-gray-700">Sort by:</span>
+          <select
+            value={sortBy}
+            onChange={(e) => setSortBy(e.target.value)}
+            className="border rounded-md px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+          >
+            <option value="default">Default</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="name">Name</option>
+          </select>
         </div>
       </div>
       
